@@ -32,7 +32,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios",
+    // "@nuxtjs/axios",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -47,5 +47,9 @@ export default {
   server: {
     port: 3001, // default: 3000
     host: "0.0.0.0", // default: localhost
-  }
+  },
+
+  env: {
+    base: process.env.BASE_URL || "http://localhost:3000",
+  },
 };

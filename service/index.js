@@ -1,31 +1,30 @@
-import axios from 'axios'
-import qs from 'qs'
-import config from './config'
+import axios from "axios";
+import qs from "qs";
+import config from "./config";
 
-// if (process.server) {
-//   console.log("process.server")
-//   config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 8000}`
-// } else {
-//   console.log("no process.server")
-//   config.baseURL = `http://101.43.113.93:${process.env.PORT || 8000}`
-// }
-
-config.baseURL = `http://101.43.113.93:8000`
-const service = axios.create(config)
+console.log(process.env.NODE_ENV); // 通过该值区分是npm run dev 还是 npm run start
+// run dev的时候
+if (process.env.NODE_ENV === "development") {
+  config.baseURL = `http://101.43.113.93:8000`;
+} else {
+  // run start的时候
+  config.baseURL = `http://localhost:8000`;
+}
+const service = axios.create(config);
 
 // POST 传参序列化
 service.interceptors.request.use(
-  config => {
-    if (config.method === 'post') config.data = qs.stringify(config.data)
-    return config
+  (config) => {
+    if (config.method === "post") config.data = qs.stringify(config.data);
+    return config;
   },
-  error => {
-    return Promise.reject(error)
+  (error) => {
+    return Promise.reject(error);
   }
-)
+);
 // 返回状态判断
 service.interceptors.response.use(
-  res => {
+  (res) => {
     // if (res.status !== 200) {
     //   Message({
     //     showClose: true,
@@ -34,9 +33,9 @@ service.interceptors.response.use(
     //   })
     //   return Promise.reject(res)
     // }
-    return res.data
+    return res.data;
   },
-  error => {
+  (error) => {
     // if (error.response.status === 403) {
     //   Message({
     //     showClose: true,
@@ -50,33 +49,33 @@ service.interceptors.response.use(
     //     message: error.message
     //   })
     // }
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
-)
+);
 
 export default {
-  post (url, data) {
-    console.log('post request url', url)
+  post(url, data) {
+    console.log("post request url", url);
     return service({
-      method: 'post',
+      method: "post",
       url,
-      params: data
-    })
+      params: data,
+    });
   },
-  get (url, data) {
-    console.log('get request url', url)
+  get(url, data) {
+    console.log("get request url", url);
     return service({
-      method: 'get',
+      method: "get",
       url,
-      params: data
-    })
+      params: data,
+    });
   },
-  delete (url, data) {
-    console.log('delete request url', url)
+  delete(url, data) {
+    console.log("delete request url", url);
     return service({
-      methods: 'delete',
+      methods: "delete",
       url,
-      params: data
-    })
-  }
-}
+      params: data,
+    });
+  },
+};
