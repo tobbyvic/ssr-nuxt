@@ -4,12 +4,14 @@ import config from "./config";
 
 console.log(process.env.NODE_ENV); // 通过该值区分是npm run dev 还是 npm run start
 // run dev的时候
-if (process.env.NODE_ENV === "development") {
-  config.baseURL = `http://101.43.113.93:8000`;
-} else {
-  // run start的时候
-  config.baseURL = `http://localhost:8000`;
-}
+// if (process.env.NODE_ENV === "development") {
+//   config.baseURL = `http://101.43.113.93:8000`;
+// } else {
+//   // run start的时候
+//   config.baseURL = `http://localhost:8000`;
+// }
+
+config.baseURL = "/";
 const service = axios.create(config);
 
 // POST 传参序列化

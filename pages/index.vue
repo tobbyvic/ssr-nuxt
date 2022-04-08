@@ -26,22 +26,23 @@ export default {
       counter: (state) => state.counter,
     }),
   },
-  async asyncData({ route, store }) {
-    let res = await getData(store);
-
-    // console.log("articles", res)
+  async asyncData({ route, store, $axios }) {
+    let res = await $axios.get(`/api/articles`);
+    console.log(res);
     return {
-      articles: [...res],
+      articles: [],
     };
   },
   methods: {
     clickFn() {
       this.$store.commit("INCREMENT");
     },
-    async getData() {
+    async getData(context) {
+      // 这里的请求是客户端发送的请求，需要用axios库
+      // console.log(context)
       let res = await getData(this.$store);
-      console.log(res)
-    }
+      console.log(res);
+    },
   },
 };
 </script>

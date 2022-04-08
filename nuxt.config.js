@@ -46,10 +46,25 @@ export default {
 
   server: {
     port: 3001, // default: 3000
-    host: "0.0.0.0", // default: localhost
+    // host: "0.0.0.0", // default: localhost
   },
 
-  env: {
-    base: process.env.BASE_URL || "http://localhost:3000",
+  env: {},
+
+  serverMiddleware: [],
+
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+
+  axios: {
+    proxy: true,
+  },
+
+  proxy: {
+    "/api": {
+      target: "http://101.43.113.93:8000",
+      // pathRewrite: {
+      //   "^/api": "/",
+      // },
+    },
   },
 };
