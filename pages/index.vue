@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div>this is index page</div>
+    <div>{{ counter }}</div>
     <div v-for="(item, index) in articles" :key="index">{{ item.name }}</div>
+    <button @click="clickFn">click me</button>
+    <button @click="getData">get data</button>
   </div>
 </template>
 
@@ -24,16 +26,22 @@ export default {
       counter: (state) => state.counter,
     }),
   },
-  clickFn() {
-    this.$store.commit("INCREMENT");
-  },
   async asyncData({ route, store }) {
-    let res = await getData(store)
+    let res = await getData(store);
 
     // console.log("articles", res)
     return {
       articles: [...res],
     };
+  },
+  methods: {
+    clickFn() {
+      this.$store.commit("INCREMENT");
+    },
+    async getData() {
+      let res = await getData(this.$store);
+      console.log(res)
+    }
   },
 };
 </script>
