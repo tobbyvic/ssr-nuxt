@@ -4,6 +4,9 @@
     <div v-for="(item, index) in articles" :key="index">{{ item.name }}</div>
     <button @click="clickFn">click me</button>
     <button @click="getData">get data</button>
+    <div>
+      hhhh this is html test
+    </div>
   </div>
 </template>
 
