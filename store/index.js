@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import state from "./state";
 import * as mutations from "./mutations";
-import * as actions from "./actions";
+// import * as actions from "./actions";
 
 Vue.use(Vuex);
 
@@ -18,5 +18,10 @@ Vue.use(Vuex);
 export default {
   state,
   mutations,
-  actions,
+  actions: {
+    async getArticles({ commit }) {
+      const articles = await this.$axios.$get("/api/articles");
+      commit("SET_ARTICLES", articles);
+    }
+  }
 };
