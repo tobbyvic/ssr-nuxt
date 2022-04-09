@@ -6,7 +6,7 @@ module.exports = {
     // 是否启用监控模式，默认是false。如果设置成true，当应用程序变动时，pm2会自动重载。这里也可以设置你要监控的文件。
     watch: true, // watch: './',
     // 不用监听的文件
-    ignore_watch: ["node_modules", ".nuxt"],
+    ignore_watch: ["node_modules"],
     // 设置应用程序异常退出重启的次数，默认15次（从0开始计数）,最大异常重启次数，即小于min_uptime运行时间重启次数；
     // max_restarts: 10,
     // 生产环境配置
