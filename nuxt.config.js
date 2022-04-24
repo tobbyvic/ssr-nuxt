@@ -10,8 +10,17 @@ export default {
     },
     meta: [
       { charset: "utf-8" },
+      {
+        name: "google-site-verification",
+        content: "aE6h3xQmUOuXfamQjtLJyOZIS4TtK1WAXdVQOG0nBWk"
+      },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "这是一个yyd文件数据库, 里面包含了若干文件，包含前端相关，后端相关，cif文件绘制，等等数据。主要语言是javascript。来自姑苏的文件数据库，姑苏数据库，位于苏州。yyd的文件数据库" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "这是一个yyd文件数据库, 里面包含了若干文件，包含前端相关，后端相关，cif文件绘制，等等数据。主要语言是javascript。来自姑苏的文件数据库，姑苏数据库，位于苏州。yyd的文件数据库"
+      },
       { name: "format-detection", content: "telephone=no" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
