@@ -11,6 +11,10 @@ export default {
     meta: [
       { charset: "utf-8" },
       {
+        name: "baidu-site-verification",
+        content: "code-nPa5THSOxg"
+      },
+      {
         name: "google-site-verification",
         content: "aE6h3xQmUOuXfamQjtLJyOZIS4TtK1WAXdVQOG0nBWk"
       },
