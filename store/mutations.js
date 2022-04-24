@@ -11,3 +11,8 @@ export function SET_ARTICLES(state, payload) {
 
   state.articles = payload;
 }
+
+export function SET_FILELIST(state, payload) {
+  console.log("payload", payload);
+  state.fileList = [...payload];
+}
