@@ -2,6 +2,23 @@ console.log("process.env.BASE_URL", process.env.NUXT_ENV_BASE_URL);
 // console.log("process", process);
 
 export default {
+  hooks: {
+    // build: {
+    //   done(builder) {
+    //     const extraFilePath = path.join(
+    //       builder.nuxt.options.buildDir,
+    //       'extra-file'
+    //     )
+    //     fs.writeFileSync(extraFilePath, 'Something extra')
+    //   }
+    // }
+    "render:route": (url, result) => {
+      // console.log("result", result);
+      const newHTML = result.html.replace(/data-n-head=\"ssr\"/gi, '');
+      console.log("newHTML", newHTML.slice(0, 400));
+      result.html = result.html.replace(/data-n-head=\"ssr\"/gi, '');
+    }
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "yyd文件数据库",
