@@ -15,8 +15,8 @@ export default {
     "render:route": (url, result) => {
       // console.log("result", result);
       const newHTML = result.html.replace(/data-n-head=\"ssr\"/gi, '');
-      console.log("newHTML", newHTML.slice(0, 400));
-      result.html = result.html.replace(/data-n-head=\"ssr\"/gi, '');
+      // console.log("newHTML", newHTML.slice(0, 400));
+      result.html = newHTML;
     }
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
