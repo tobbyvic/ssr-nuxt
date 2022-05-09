@@ -21,7 +21,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "yyd文件数据库",
+    title: "yyd的测试数据库",
     htmlAttrs: {
       lang: "zh"
     },
@@ -40,7 +40,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "这是一个yyd文件数据库, 里面包含了若干文件，包含前端相关，后端相关，cif文件绘制，等等数据。主要语言是javascript。来自姑苏的文件数据库，姑苏数据库，位于苏州。yyd的文件数据库"
+          "这是一个闫玉东的测试数据库网站, 里面包含了若干文件，包含网站相关内容，托管的图片文件等等数据。主要语言是html css javascript。yyd是一个来自苏州的web前端开发者。本段为对于网站SEO的测试内容文本。"
       },
       { name: "format-detection", content: "telephone=no" }
     ],
