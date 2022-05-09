@@ -21,7 +21,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "yyd的测试数据库",
+    title: "yyd的测试数据库,闫玉东的测试文件数据库网站，前端开发者，SEO测试，数据库测试，江苏省苏州市",
     htmlAttrs: {
       lang: "zh"
     },

@@ -3,10 +3,12 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
       <section class="px-4 py-5 sm:px-6">
-        <div
+        <h1
           class="bg-gray-300 rounded-lg py-2 px-6 text-base text-gray-800"
           role="alert"
-        >yyd的文件数据库，根目录：http://101.43.113.93:8000/images/</div>
+        >
+          yyd的测试数据库文件 根路径: /images/
+        </h1>
       </section>
 
       <!-- 搜索部分 -->
@@ -15,7 +17,8 @@
           <label
             for="exampleFormControlInput1"
             class="form-label inline-block mb-2 text-gray-700"
-          >搜索文件名：</label>
+            >搜索文件名：</label
+          >
           <div>
             <input
               :value="searchValue"
@@ -31,14 +34,19 @@
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               class="inline-block px-6 py-2.5 mt-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-            >Search</button>
+            >
+              Search
+            </button>
           </div>
         </div>
       </section>
 
       <!-- 文件列表部分 -->
 
-      <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+      <ul
+        role="list"
+        class="border border-gray-200 rounded-md divide-y divide-gray-200"
+      >
         <li
           class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
           v-for="(item, index) in fileList"
@@ -59,13 +67,14 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <span class="ml-2 flex-1 w-0 truncate">{{item}}</span>
+            <span class="ml-2 flex-1 w-0 truncate">{{ item }}</span>
           </div>
           <div class="ml-4 flex-shrink-0">
             <a
               :href="`http://101.43.113.93:8000/images/${item}`"
               class="font-medium text-indigo-600 hover:text-indigo-500"
-            >Download</a>
+              >Download</a
+            >
           </div>
         </li>
       </ul>
@@ -85,15 +94,15 @@ export default {
   props: {},
   data() {
     return {
-      searchValue: ""
+      searchValue: "",
     };
   },
   computed: {
     ...mapState({
-      counter: state => state.counter,
-      articles: state => state.articles,
-      fileList: state => state.fileList
-    })
+      counter: (state) => state.counter,
+      articles: (state) => state.articles,
+      fileList: (state) => state.fileList,
+    }),
   },
   methods: {
     clickFn() {
@@ -115,7 +124,7 @@ export default {
     async getFileList() {
       let res = await this.$axios.get(`/api/upload?name=${this.searchValue}`);
       this.$store.commit("SET_FILELIST", res.data.files);
-    }
-  }
+    },
+  },
 };
 </script>
