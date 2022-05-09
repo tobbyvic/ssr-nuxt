@@ -11,6 +11,51 @@
         </h1>
       </section>
 
+      <div class="flex px-4 pb-2 sm:px-6">
+        <div class="mb-3 w-96">
+          <label
+            for="formFileLg"
+            class="form-label inline-block mb-2 text-gray-700"
+            >文件上传：</label
+          >
+          <!-- <input
+            class="form-control block w-full px-2 py-1.5 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            id="formFileLg"
+            type="file"
+            @change="handleFiles"
+          /> -->
+          <form
+            ref="myForm"
+            enctype="multipart/form-data"
+            method="post"
+            name="fileinfo"
+          >
+            <input
+              class="form-control block w-full px-2 py-1.5 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="formFileLg"
+              type="file"
+              required
+              @change="onFileChange"
+            />
+            <input
+              class="inline-block px-6 py-2.5 mt-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              type="submit"
+              value="Stash the file!"
+              @click="onUploadFile"
+            />
+          </form>
+          <!-- <button
+            @click="getFileList"
+            type="button"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="light"
+            class="inline-block px-6 py-2.5 mt-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            点击上传
+          </button> -->
+        </div>
+      </div>
+
       <!-- 搜索部分 -->
       <section class="flex px-4 pb-2 sm:px-6">
         <div class="mb-3 xl:w-96">
@@ -95,6 +140,7 @@ export default {
   data() {
     return {
       searchValue: "",
+      uploadFiles: [],
     };
   },
   computed: {
@@ -114,12 +160,38 @@ export default {
       //   let res = await getData(this.$store);
       // console.log("click btn", res);
     },
+    onFileChange(e) {
+      this.uploadFiles = e.target.files;
+      console.log(this.uploadFiles);
+    },
     onInput(e) {
       console.log(e.target.value);
       this.searchValue = e.target.value;
       setTimeout(() => {
         this.getFileList();
       }, 600);
+    },
+    handleFiles(e) {
+      const files = e.target.files;
+      console.log(files);
+    },
+    onUploadFile(e) {
+      e.preventDefault();
+      console.log("onUploadFile", e);
+      let formData = new FormData();
+      let file = this.uploadFiles[0];
+      formData.append("input", file);
+      this.$axios
+        .headers({
+          "Content-Type": "application/form-data",
+        })
+        .post(`/api/upload`, formData)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     async getFileList() {
       let res = await this.$axios.get(`/api/upload?name=${this.searchValue}`);
