@@ -1,0 +1,4 @@
+Sitemap: https://www.yydworld.xyz/sitemap.xml
+
+User-agent: *
+Allow: /
