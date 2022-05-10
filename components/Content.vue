@@ -180,14 +180,22 @@ export default {
       console.log("onUploadFile", e);
       let formData = new FormData();
       let file = this.uploadFiles[0];
-      formData.append("input", file);
-      this.$axios
-        .headers({
-          "Content-Type": "application/form-data",
-        })
+      formData.append("sampleFile", file);
+
+      const api = this.$axios.create({
+        headers: {
+          common: {
+            "Content-Type": "application/form-data",
+          },
+        },
+      });
+      api
         .post(`/api/upload`, formData)
         .then((res) => {
           console.log(res);
+          if (res.data.status === true) {
+            this.getFileList();
+          }
         })
         .catch((err) => {
           console.log(err);
