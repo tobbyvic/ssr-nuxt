@@ -1,4 +1,4 @@
-# ssr-template
+# ssr-nuxt
 
 ## Build Setup
 

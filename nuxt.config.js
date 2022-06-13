@@ -70,10 +70,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    // "@nuxtjs/axios",
-  ],
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -94,19 +91,18 @@ export default {
 
   serverMiddleware: [],
 
-  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
-
   axios: {
-    base: "/",
-    proxy: true,
+    baseURL: "https://api-dev.lib-mat.ac.cn",
+    proxy: false,
   },
 
   proxy: {
-    "/api": {
-      target: process.env.NUXT_ENV_BASE_URL || "http://101.43.113.93:8000",
-      // pathRewrite: {
-      //   "^/api": "/",
-      // },
-    },
+    // "/api": {
+    // target: process.env.NUXT_ENV_BASE_URL || "https://api-dev.lib-mat.ac.cn",
+    // target: "https://api-dev.lib-mat.ac.cn"
+    // pathRewrite: {
+    //   "^/api": "/",
+    // },
+    // },
   },
 };
