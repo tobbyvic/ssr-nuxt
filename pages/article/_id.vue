@@ -17,14 +17,15 @@
       </section>
     </section>
     <section class="center">
-      <!-- <div class="header">
-        <div class="title">{{ 'This is title.' }}</div>
+      <div class="header">
+        <div class="title">{{ currNodeTitle }}</div>
         <div class="time">更新日期时间 xxxx - xx - xx 22:45</div>
-      </div> -->
+      </div>
       <article
         id="js-toc-content"
         class="markdown-body"
         v-html="currentArticle"
+        v-highlight
       ></article>
     </section>
     <section class="right">
@@ -54,6 +55,7 @@ export default {
 
     let id = route.params.id;
     let article = await $axios.get(`${api.openArticleByIdApi}/${id}`);
+    console.log("article", article);
     // store.commit("SET_FILELIST", data);
     return {
       data: tree.data,
@@ -63,9 +65,9 @@ export default {
       },
       currentArticle: article.data.htmlBody,
       currNodeKey: id,
+      currNodeTitle: article.data.title, // 当前文档大标题
 
       currParaId: "", // 文章段落标题
-      currNodeTitle: "", // 当前文档大标题
     };
   },
   name: "IndexPage",
@@ -282,8 +284,9 @@ export default {
     }
   }
   ::v-deep .markdown-body {
-    padding: 20px;
+    padding: 45px;
     font-family: AlibabaSans-Light;
+    background-color: #f8f8f8;
     h1,
     h2,
     h3,
