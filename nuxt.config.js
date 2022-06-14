@@ -45,7 +45,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "这是一个闫玉东的测试数据库网站, 里面包含了若干文件，包含网站相关内容，托管的图片文件等等数据。主要语言是html css javascript。yyd是一个来自苏州的web前端开发者。本段为对于网站SEO的测试内容文本。",
+          "这是一个测试数据库网站, 里面包含了若干文件，包含网站相关内容，托管的图片文件等等数据。主要语言是html css javascript。yyd是一个来自苏州的web前端开发者。本段为对于网站SEO的测试内容文本。",
       },
       { name: "format-detection", content: "telephone=no" },
     ],
@@ -53,10 +53,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/css/main.css"],
+  css: [
+    "@/assets/css/main.css",
+    "element-ui/lib/theme-chalk/index.css",
+    "@assets/css/github-markdown.css",
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["@/plugins/element-ui", "@/plugins/route"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -79,6 +83,17 @@ export default {
         tailwindcss: {},
         autoprefixer: {},
       },
+    },
+    babel: {
+      plugins: [
+        [
+          "component",
+          {
+            libraryName: "element-ui",
+            styleLibraryName: "theme-chalk",
+          },
+        ],
+      ],
     },
   },
 
